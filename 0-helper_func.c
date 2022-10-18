@@ -74,3 +74,46 @@ int binconv(va_list args, int *count, int sz)
 	}
 	return (0);
 }
+
+/**
+ * print_mem - print memory address
+ * @list: list of runtime arguments
+ * @count: address of memory containing number of printed bytes so far
+ * @sz: the size specifier
+ * Return: 0
+ */
+int print_mem(va_list list, it *count, int sz)
+{
+	char address[BUFF];
+	unsigned long int x, mod, i;
+	char hex[] = "0123456789abcdef";
+
+	UN_NEEDED(sz);
+	x = va_arg(list, unsigned long int);
+	if (!x)
+	{
+		char *null = "(nil)";
+
+		write(1, null, 5);
+		*count += 5;
+	}
+	else
+	{
+		_putchar('0');
+		_putchar('x');
+		*count += 2;
+		for (i = 0; x > 0; x /= 16)
+		{
+			mod = x % 16;
+			address[i++] = hex[mod];
+		}
+		for (i -= 1;; i--)
+		{
+			_putchar(address[i]);
+			(*count)++;
+			if (address + i == address)
+				break;
+		}
+	}
+	return (0);
+}
