@@ -76,13 +76,32 @@ int binconv(va_list args, int *count, int sz)
 }
 
 /**
+ * print_percent - print a percent sign
+ * print_mem - print memory address
+ * @count: address of memory containing number of printed bytes so far
+ * @sz: the size specifier
+ * Return: 0
+ */
+int print_percent(va_list list, int *count, int sz)
+{
+	char x;
+
+	UN_NEEDED(sz);
+	UN_NEEDED(list);
+	x = '%';
+	_putchar(x);
+	(*count)++;
+	return (0);
+}
+
+/**
  * print_mem - print memory address
  * @list: list of runtime arguments
  * @count: address of memory containing number of printed bytes so far
  * @sz: the size specifier
  * Return: 0
  */
-int print_mem(va_list list, it *count, int sz)
+int print_mem(va_list list, int *count, int sz)
 {
 	char address[BUFF];
 	unsigned long int x, mod, i;
